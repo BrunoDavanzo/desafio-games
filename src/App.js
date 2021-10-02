@@ -1,37 +1,35 @@
 import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, Button } from 'react-bootstrap';
+import Basket from './components/Basket';
+import Main from './components/Main';
+import { useState } from 'react';
 import Product from './products.json';
-import callOfDuty from './img/callOfDuty.png';
+
 
 function App() {
-  return (
-    <div className="page">
-      <div className="catalog">
-        {
-          Product.map((item, index) => {
-            return (
-              <div className="card" key={index}>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={callOfDuty} />
-                  <Card.Body>
-                    <Card.Title>{item.name}</Card.Title>
-                    <Card.Text>Price: R${item.price}</Card.Text>
-                    <Card.Text>Score: {item.score}</Card.Text>
-                    <Button variant="primary">Add to Cart</Button>
-                  </Card.Body>
-                </Card>
-              </div>
-            )
-          })
-        }
-      </div>
-      <div className="cart">
-
-      </div>
-    </div>
-  );
+	const { products } = Product;
+	const [cartItems, setCartItems] = useState([]);
+	const onAdd = (product) => {
+		const exist = cartItems.find((x) => x.id === product.id);
+		if (exist) {
+			setCartItems(cartItems.map((x) => x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+			)
+			);
+		} else {
+			setCartItems([...cartItems, { ...product, qty: 1 }]);
+		}
+	}
+	return (
+		<div className="page">
+			<div className="catalog">
+				<Main products={products}></Main>
+			</div>
+			<div className="cart">
+				<Basket onAdd={onAdd} cartItems={cartItems}></Basket>
+			</div>
+		</div>
+	);
 }
 
 export default App;
