@@ -6,7 +6,9 @@ import Basket from './components/Basket';
 import MainContent from './components/Main';
 
 function App() {
+	const product = [];
 	const [cartItems, setCartItems] = useState([]);
+
 	const onAdd = (product) => {
 		const exist = cartItems.find((x) => x.id === product.id);
 		if (exist) {
@@ -16,18 +18,31 @@ function App() {
 		} else {
 			setCartItems([...cartItems, { ...product, qty: 1 }]);
 		}
+	};
+
+	const onRemove = ( product ) =>{
+		const exist = cartItems.find((x) => x.id === product.id);
+		if(exist.qty === 1) {
+			setCartItems(cartItems.filter((x) => x.id !== product.id));
+		}else {
+			setCartItems(
+				cartItems.map((x) =>
+				x.id === product.id ? {...exist, qty: exist.qty -1 } : x
+				)
+			)
+		}
 	}
 	return (
 		<div className="page">
 			<div className="catalog">
-				<MainContent/>
+				<MainContent onAdd={onAdd} product={product} ></MainContent>
 			</div>
 			<div className="cart">
-				<Basket onAdd={onAdd} cartItems={cartItems}></Basket>
+				<Basket onAdd={onAdd} onRemove={onRemove} cartItems={cartItems}></Basket>
 			</div>
 		</div>
 	);
 }
 
 export default App;
-
+ 
