@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Basket from './components/Basket';
 import MainContent from './components/Main';
 import Product from './products.json';
-import Filter from './components/Filter';
+import Header from './components/Header'
 
 function App() {
 	const product = [];
@@ -54,19 +54,21 @@ function App() {
 		})
 	 }
 	return (
-		<div className="page">
-
-			<div className="catalog">
-				<Filter 
+		
+			<div className="header">
+				<Header>
 					sort={state.sort}
-					handleChangeSort = {handleChangeSort}>
-				</Filter>
+					handleChangeSort = {handleChangeSort}
+				</Header>
+		<div className="page">
+			<div className="catalog">
 				<MainContent onAdd={onAdd} product={product} ></MainContent>
 			</div>
 			<div className="cart">
 				<Basket onAdd={onAdd} onRemove={onRemove} cartItems={cartItems}></Basket>
 			</div>
 		</div>
+			</div>
 	);
 }
 

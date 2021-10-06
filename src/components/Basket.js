@@ -12,7 +12,7 @@ export default function Basket(props) {
     return (
         <aside>
             <h1>Cart Items</h1>
-            {cartItems.length === 0 && <div>Cart is empty</div>}
+            {cartItems.length === 0 && <div className="message">Cart is empty</div>}
                 {cartItems.map((item) => (
                     <div key={item.id} className="row">
                         <div className="name">{item.name}</div>
@@ -22,19 +22,20 @@ export default function Basket(props) {
                         </div>
                         <div className="text-right">
                             {item.qty} x R${item.price.toFixed(2)}
+                            <hr></hr>
                         </div>
                     </div>
                 ))}
                 {cartItems.length !== 0 && (
                     <>
-                    <hr></hr>
+                    {/* <hr></hr> */}
                     <div className="row">
                         <div className="col-8">Items Price</div>
                         <div className="col-4 text-right">R$ {itemsPrice.toFixed(2)}</div>
                     </div>
                     <div className="row">
                         <div className="col-8">Shipping Price</div>
-                        <div className="col-4 text-right">R$ {totalShippingPrice.toFixed(2)}</div>
+                        <div className="col-4">R$ {totalShippingPrice.toFixed(2)}</div>
                     </div>
                     <div className="row">
                         <div className="col-8"><strong> Total Price </strong></div>

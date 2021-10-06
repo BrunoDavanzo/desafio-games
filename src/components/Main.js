@@ -4,6 +4,7 @@ import Product from '../products.json';
 import { Card, Button } from 'react-bootstrap';
 
 export default function MainContent (props) {
+    <div><h1>Product</h1></div>
     const { onAdd } = props;
     const listItems = Product.map((item)=>
     <div className="card" key={item.id}>

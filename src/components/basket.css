@@ -1,5 +1,12 @@
+aside{
+    margin-left: 3px;
+}
 h1{
     text-align: center;
+    font-family: 'Chakra Petch', sans-serif;
+}
+.message{
+    margin-left: 5px;
 }
 button{
     border: none;
@@ -10,9 +17,9 @@ button{
     background-color: #c1b3b6;
 }
 .add{
-    /* margin-right: 5px; */
     width: 25px;
 }
 .remove{
     width: 25px;
 }
+
