@@ -4,10 +4,13 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Basket from './components/Basket';
 import MainContent from './components/Main';
+import Product from './products.json';
+import Filter from './components/Filter';
 
 function App() {
 	const product = [];
 	const [cartItems, setCartItems] = useState([]);
+	const [state, setState] = useState([]);
 
 	const onAdd = (product) => {
 		const exist = cartItems.find((x) => x.id === product.id);
@@ -31,10 +34,33 @@ function App() {
 				)
 			)
 		}
+	};
+	
+	const handleChangeSort = (e) => {
+		let setState = {sort: e.target.value};
+		listProducts();
 	}
+	
+	 const listProducts = () => {
+		setState(state =>{
+			if (state.sort !== ''){
+				state.Product.sort((a, b) =>(state.sort === "price") ? (a.price < b.price ? 1 : -1) : (a.price < b.price ? 1 : -1))
+			} else if(state.sort === "score"){
+				state.Product.sort((a, b) =>(state.sort === "score") ? (a.score < b.score ? 1 : -1) : (a.score < b.score ? 1 : -1))
+			} else {
+				state.Product.sort((a, b) =>(state.sort === "name") ? (a.name < b.name ? 1 : -1) : (a.name < b.name ? 1 : -1))
+			}
+			return (state.Product)
+		})
+	 }
 	return (
 		<div className="page">
+
 			<div className="catalog">
+				<Filter 
+					sort={state.sort}
+					handleChangeSort = {handleChangeSort}>
+				</Filter>
 				<MainContent onAdd={onAdd} product={product} ></MainContent>
 			</div>
 			<div className="cart">

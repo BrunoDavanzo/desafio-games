@@ -1,0 +1,18 @@
+h1{
+    text-align: center;
+}
+button{
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-left: 5px;
+    padding-bottom: 4px;
+    background-color: #c1b3b6;
+}
+.add{
+    /* margin-right: 5px; */
+    width: 25px;
+}
+.remove{
+    width: 25px;
+}

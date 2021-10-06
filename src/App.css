@@ -1,6 +1,6 @@
 .page{
   display: flex;
-  /* background-color: brown; */
+  background-color: black;
 }
 .catalog{
   display: flex;
@@ -8,13 +8,15 @@
   justify-content:space-evenly;
   flex-wrap: wrap;
   width: 75%;
-  background-color: black;
+  background: linear-gradient(to left, #000000 30%, #ababaf)
 }
 .cart{
-  background-color: blueviolet;
-  width: 25%;
+  background-color: #e6e4e8;
+  width: 29%;
+  border-radius: 15px;
+  margin: 10px 0px 5px 0;
+  font-weight: 500; 
 }
 .card{
   margin-bottom: 10px;
-  
 }
