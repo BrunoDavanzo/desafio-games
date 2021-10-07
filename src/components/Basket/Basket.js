@@ -1,6 +1,6 @@
 import React from 'react';
-import '../components/basket.css'
 
+import '../Basket/Basket.css'
 
 export default function Basket(props) {
     const { cartItems, onAdd, onRemove } = props;
@@ -13,22 +13,21 @@ export default function Basket(props) {
         <aside>
             <h1>Cart Items</h1>
             {cartItems.length === 0 && <div className="message">Cart is empty</div>}
-                {cartItems.map((item) => (
-                    <div key={item.id} className="row">
-                        <div className="name">{item.name}</div>
-                        <div className="button">
-                            <button onClick={() => onAdd(item)} className="add"> + </button>
-                            <button onClick={() => onRemove(item)} className="remove"> - </button>
-                        </div>
-                        <div className="text-right">
-                            {item.qty} x R${item.price.toFixed(2)}
-                            <hr></hr>
-                        </div>
+            {cartItems.map((item) => (
+                <div key={item.id} className="row">
+                    <div className="name">{item.name}</div>
+                    <div className="button">
+                        <button onClick={() => onAdd(item)} className="add"> + </button>
+                        <button onClick={() => onRemove(item)} className="remove"> - </button>
                     </div>
-                ))}
-                {cartItems.length !== 0 && (
-                    <>
-                    {/* <hr></hr> */}
+                    <div className="text-right">
+                        {item.qty} x R${item.price.toFixed(2)}
+                        <hr></hr>
+                    </div>
+                </div>
+            ))}
+            {cartItems.length !== 0 && (
+                <>
                     <div className="row">
                         <div className="col-8">Items Price</div>
                         <div className="col-4 text-right">R$ {itemsPrice.toFixed(2)}</div>
@@ -38,11 +37,11 @@ export default function Basket(props) {
                         <div className="col-4">R$ {totalShippingPrice.toFixed(2)}</div>
                     </div>
                     <div className="row">
-                        <div className="col-8"><strong> Total Price </strong></div>
+                        <div className="col-8"><strong>Total Price</strong></div>
                         <div className="col-4 text-right"><strong> R$ {totalPrice.toFixed(2)} </strong></div>
                     </div>
-                    </>
-                )}
+                </>
+            )}
         </aside>
     )
 }

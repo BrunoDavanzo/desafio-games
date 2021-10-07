@@ -1,0 +1,12 @@
+.card{
+  margin:10px 0 10px 0;
+  background-color: rgb(253, 253, 253);
+  border-radius: 10px;
+}
+.images{
+  width: 80%;
+  align-self: center;
+}
+Button{
+  border: none;
+}
